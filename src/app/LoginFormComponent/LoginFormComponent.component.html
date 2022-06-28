@@ -1,0 +1,45 @@
+<form (ngSubmit)="myForm.valid && onSubmit()" #myForm="ngForm">
+  <div>
+    <label>Email
+    <input 
+      placeholder="votre Email"
+      id="email"
+      name="email"
+      type="mail"
+      required 
+      email
+      #emailRef="ngModel"
+      [(ngModel)]="email"
+    >
+    </label>
+  </div>
+  <div *ngIf="emailRef.errors">
+    <div *ngIf="emailRef.errors?.['required']">
+      <span>oups une erreur</span>
+    </div>
+    
+  </div>
+  <div>
+    <label>Password
+    <input 
+      placeholder="votre password"
+      type="password"
+      required
+      minlength="6"
+      #passwordRef="ngModel"
+      [(ngModel)]="password"
+    >
+      
+    </label>
+  </div>
+  <div *ngIf="passwordRef.errors">
+    <div *ngIf="passwordRef.errors?.['required']">
+      <span>oups une erreur</span>
+    </div>
+    <div *ngIf="passwordRef.errors?.['minlength']">
+      <span>oups trop petit</span>
+    </div>
+  </div>
+  <button type="submit">Soumission</button>
+</form>
+<div *ngIf="message !=''">{{message}}</div>
